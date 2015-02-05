@@ -34,6 +34,7 @@ public class BrowserRequestServer {
 	private static final String NOT_FOUND_MARKUP = "<h1 style='color:#F90000'>404 Not Found Error</h1>";
 
 	static {
+		pathMap.put("/", "com.tmoncorp.train.page.impl.DefaultPage");
 		pathMap.put("/test", "com.tmoncorp.train.page.impl.TestPage");
 		pathMap.put("/param", "com.tmoncorp.train.page.impl.ParamPage");
 		pathMap.put("/calc", "com.tmoncorp.train.page.impl.CalculatorPage");
@@ -113,7 +114,7 @@ public class BrowserRequestServer {
 	}
 
 	private void parsePath(String fullPath) {
-		Pattern p1 = Pattern.compile("(/[/\\w]+)");
+		Pattern p1 = Pattern.compile("(/[/\\w]*)");
 		Matcher m1 = p1.matcher(fullPath);
 		while (m1.find()) {
 			reqPath = m1.group(1);
